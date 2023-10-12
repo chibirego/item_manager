@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import javax.persistence.Column;
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +10,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ITEMS")
+@Table(name = "items")
 public class Item {
 
 	@Id
@@ -23,6 +24,17 @@ public class Item {
 	
 	@Column(name = "PRICE")
 	private Integer price;
+	
+	@Column(name = "DELETED_AT")
+	private LocalDateTime deletedAt;
+	
+	public LocalDateTime getDeleteAt() {
+		return this.deletedAt;
+	}
+	
+	public void setDeletedAt(LocalDateTime deletesAt) {
+		this.deletedAt = deletedAt;
+	}
 	
 	public Integer getId() {
 		return this.id;

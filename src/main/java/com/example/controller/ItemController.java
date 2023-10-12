@@ -26,9 +26,6 @@ public class ItemController {
 		this.itemService = itemService;
 	}
 	
-	// 商品一覧の表示
-
-	
 	// 商品登録ページ表示用
 	@GetMapping("toroku")
 	public String torokuPage(@ModelAttribute("itemForm") ItemForm itemForm) {
@@ -67,9 +64,10 @@ public class ItemController {
 		return "redirect:/item";
 	}
 	
+	// 商品一覧の表示
 	@GetMapping
 	public String index(Model model) {
-		List<Item> items = this.itemService.findAll();
+		List<Item> items = this.itemService.findByDeletedAtIsNull();
 		model.addAttribute("items", items);
 		return "item/index";
 	}

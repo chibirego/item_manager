@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.example.entity.Item;
 
+import java.util.List;
+
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Integer> {
-	
+	public List<Item> findByDeletedAtIsNull();
 }

@@ -2,6 +2,8 @@ package com.example.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,10 @@ import com.example.repository.ItemRepository;
 @Service
 public class ItemService {
 	private final ItemRepository itemRepository;
+	
+	public List<Item> findByDeletedAtIsNull() {
+		return this.itemRepository.findByDeletedAtIsNull();
+	}
 	
 	@Autowired
 	public ItemService(ItemRepository itemRepository) {
@@ -43,7 +49,10 @@ public class ItemService {
 		return this.itemRepository.save(item);
 	}
 	
-	public void delete(Integer id) {
-		this.itemRepository.deleteById(id);
+	public Item delete(Integer id) {
+		Item item = this.findById(id);
+		item.setDeletedAt(LocalDateTime.now());
+		return this.itemRepository.save(item);
 	}
+
 }
