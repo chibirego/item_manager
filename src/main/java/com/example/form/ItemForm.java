@@ -2,6 +2,7 @@ package com.example.form;
 
 public class ItemForm {
 	private String name;
+	private Integer categoryId;
 	
 	private Integer price;
 	
@@ -16,5 +17,11 @@ public class ItemForm {
 	}
 	public void setPrice(Integer price) {
 		this.price = price;
+	}
+	public Integer getCategoryId() {
+		return this.categoryId;
+	}
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 }
